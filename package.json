@@ -1,0 +1,8 @@
+{
+  "name": "document",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/LandoYaw/document.git",
+  "author": "LandoYaw <1148586089@qq.com>",
+  "license": "MIT"
+}
