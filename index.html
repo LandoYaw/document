@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>图片:
+        <input type="file">
+    </div>
+    <div class="img1">img1:
+    </div>
+    <div class="img2">img2:
+    </div>
+    <script>        
+        document.querySelector('input').addEventListener('change', function(e){
+            
+            var file = null
+            var render = new FileReader()
+            var image = new Image()
+
+            file = e.target.files[0]
+            render.readAsDataURL(file)
+            render.onload = function(e) {
+                image.src = e.target.result
+                getCanvas(image)
+            }         
+        })
+        // 画布
+        function getCanvas(image) {
+            
+            var div1 = document.querySelector('.img1')
+            console.log('div1', div1.children);
+            div1.children.length > 0 ? div1.removeChild(div1.children) : ''
+            // var div2 = document.querySelector('.img2').remove()
+            var canvas = document.createElement('canvas')
+            canvas.width = 300
+            canvas.height = 300
+            var context = canvas.getContext('2d')
+
+            context.drawImage(image, 0, 0, 300,200)
+
+            var imgSrc = canvas.toDataURL('image/jpeg', 0.12)
+            
+            document.querySelector('.img1').appendChild(canvas)
+
+            var img2 = new Image()
+            img2.src = imgSrc
+            img2.setAttribute('width', 300)
+            img2.setAttribute('height', 300)
+            img2.setAttribute('style', 'background-color:red;')
+            document.querySelector('.img2').appendChild(img2)
+        }
+    </script>
+</body>
+</html>
